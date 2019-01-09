@@ -1,4 +1,4 @@
-package com.codeup.matthew.beans;
+package com.codeup.matthew.models;
 
 public class Post {
 

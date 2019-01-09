@@ -1,10 +1,8 @@
-package com.codeup.matthew.controllers;
+package com.codeup.matthew.controllers.exercises;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
 
 @Controller
 public class MathController {
@@ -40,11 +38,8 @@ public class MathController {
         model.addAttribute("randomNum", randomNum);
         model.addAttribute("guess", n);
 
-        if (randomNum == n){
-            model.addAttribute("equal", true);
-        } else {
-            model.addAttribute("equal", false);
-        }
+
+        model.addAttribute("equal", randomNum == n);
         return "roll-dice-n";
     }
 

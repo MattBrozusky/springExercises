@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head"></head>
+<head th:replace="partials :: head(posts)"></head>
 <body>
 
 <nav th:replace="partials :: navbar"></nav>
@@ -8,12 +8,11 @@
 <h1>This is the page for all posts!</h1>
 
 <div th:each="post : ${posts}">
-    <form method="GET" th:action="@{/posts/(${post.getId()})}">
-        <div>
+    <form method="GET" th:action="@{/posts/{id}(id=${post.getId()})}" th:id="${post.getId()}">
+        <div th:onclick="'document.getElementById(\'' + ${post.getId()} + '\').submit();'">
             <h3 th:text="${post.getTitle()}"></h3>
             <p th:text="${post.getBody()}"></p>
         </div>
-        <button type="submit">Submit</button>
     </form>
 </div>
 
