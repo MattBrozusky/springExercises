@@ -6,6 +6,8 @@ public class Post {
     private String body;
     private long id;
 
+    public Post(){};
+
     public Post(String title, String body, long id){
         this.title = title;
         this.body = body;
@@ -32,5 +34,7 @@ public class Post {
         return id;
     }
 
-
+    public void setId(long id) {
+        this.id = id;
+    }
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head('Home')">
+
+</head>
+<body>
+
+<nav th:replace="partials :: navbar"></nav>
+
+<div class="uk-container">
+
+    <h1 th:if="${edit}">Edit your Post!</h1>
+    <form th:action="@{/posts/{id}/edit(id=${post.getId()})}" method="POST" th:object="${post}" th:if="${edit}">
+        <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+                <input class="uk-input" type="text" th:field="*{title}" th:value="${title}"/>
+            </div>
+            <div class="uk-margin">
+                <textarea class="uk-textarea" rows="5" th:field="*{body}" th:value="${body}"></textarea>
+            </div>
+            <div uk-margin="">
+                <button class="uk-button uk-button-primary" type="submit">Primary</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <h1 th:if="${create}">Create a Post!</h1>
+    <form action="/posts/create" method="POST" th:object="${post}" th:if="${create}">
+        <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+                <input class="uk-input" type="text" placeholder="Title" th:field="*{title}"/>
+            </div>
+            <div class="uk-margin">
+                <textarea class="uk-textarea" rows="5" placeholder="Description" th:field="*{body}"></textarea>
+            </div>
+            <div uk-margin="">
+                <button class="uk-button uk-button-primary" type="submit">Primary</button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+
+
+<footer th:replace="partials :: footer"></footer>
+<span th:replace="partials :: scripts"></span>
+</body>
+</html>
