@@ -1,12 +1,21 @@
 package com.codeup.matthew.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="posts")
 public class Post {
 
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String body;
+
+    @Id @GeneratedValue
     private long id;
 
-    public Post(){};
+    public Post(){}
 
     public Post(String title, String body, long id){
         this.title = title;

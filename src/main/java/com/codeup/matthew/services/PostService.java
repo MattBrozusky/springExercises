@@ -1,56 +1,35 @@
 package com.codeup.matthew.services;
 
+import com.codeup.matthew.Repositories.PostRepository;
 import com.codeup.matthew.models.Post;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PostService {
 
-    private List<Post> posts;
+    private final PostRepository postDao;
 
-
-    public PostService() {
-        posts = new ArrayList<>();
-        createPosts();
+    public PostService(PostRepository postDao){
+        this.postDao = postDao;
     }
+
 
     public List<Post> all() {
-        return posts;
-    }
-
-    public Post create(Post post) {
-        post.setId(posts.size() + 1);
-        posts.add(post);
-        return post;
+        return (List<Post>) postDao.findAll();
     }
 
     public Post one(long id) {
-        return posts.get((int)id - 1);
-    }
-
-    public long edit(Post post){
-        Post updatedPost = posts.get((int)post.getId() - 1);
-        updatedPost.setBody(post.getBody());
-        updatedPost.setTitle(post.getTitle());
-        return updatedPost.getId();
+        return postDao.findOne(id);
     }
 
     public long save(Post post){
-        post.setId(posts.size() + 1);
-        posts.add(post);
+        postDao.save(post);
         return post.getId();
     }
 
-    private void createPosts() {
-        Post test = new Post("My first post", "This is super informative post",0);
-        Post test2 = new Post("My second post", "This is not an informative post", 0);
-        Post test3 = new Post("My third post", "This is a terrible post", 0);
-        create(test);
-        create(test2);
-        create(test3);
+    public void delete(long id){
+        postDao.delete(id);
     }
 
 }

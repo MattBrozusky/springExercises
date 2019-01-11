@@ -12,6 +12,16 @@
     <h4 th:text="${post.getTitle()}"></h4>
     <p th:text="${post.getBody()}"></p>
 </div>
+<form th:action="@{/posts/{id}/edit(id=${post.getId()})}" method="GET">
+    <div uk-margin="">
+        <button class="uk-button uk-button-primary">Edit</button>
+    </div>
+</form>
+<form action="" method="POST">
+    <div uk-margin="">
+        <button class="uk-button uk-button-danger">Delete</button>
+    </div>
+</form>
 
 
 <footer th:replace="partials :: footer"></footer>
